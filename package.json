@@ -1,16 +1,19 @@
 {
   "name": "mtracker",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "repository": "git@github.com:DennisWanjiru/mtracker.git",
   "author": "Dennis Wanjiru",
   "license": "MIT",
   "scripts": {
-    "serve": "node server.js",
+    "serve": "webpack --watch & live-server public/",
     "heroku-postbuild": "webpack -p",
-    "start": "webpack --watch & live-server public/",
+    "start": "node server.js",
     "watch": "webpack --watch",
     "build": "webpack --config webpack.config.js"
+  },
+  "engines": {
+    "node": "10.5.0"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
