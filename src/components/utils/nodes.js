@@ -1,6 +1,6 @@
-const select = selectors => {
+const select = ids => {
   const nodes = {};
-  selectors.map(selector => {
+  ids.map(selector => {
     nodes[selector] = document.getElementById(selector);
   });
   return nodes;
@@ -15,7 +15,7 @@ export const signupNodes = () => {
     username,
     email,
     password,
-    confirmPassword: confirm_password
+    confirm_password
   };
 };
 
@@ -59,4 +59,8 @@ export const dashboardNodes = () => {
 
 export const detailsNodes = () => {
   return select(["content", "actions"]);
+};
+
+export const filterNodes = () => {
+  return select(["all", "pending", "approved", "rejected", "resolved"]);
 };

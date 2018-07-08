@@ -39,17 +39,15 @@ class Signup extends Component {
       el.addEventListener("change", e => {
         data[e.target.name] = e.target.value;
         this.setState({ data });
-        console.log(this.state.data);
       });
     });
   }
 
   handleSubmit(e) {
-    const errors = { ...this.state.errors };
+    let errors = { ...this.state.errors };
     this.submit.addEventListener("click", e => {
       e.preventDefault();
       this.setState({ isFetching: true });
-      console.log(this.state);
       api
         .post("/users/auth/signup/", this.state.data)
         .then(res => {
@@ -59,20 +57,43 @@ class Signup extends Component {
         .then(data => {
           this.setState({ isFetching: false });
           if (this.state.success) {
-            localStorage.setItem("success", data.message);
+            sessionStorage.setItem("success", data.message);
             redirect("/auth/signin/");
           } else {
             Object.values(data).map(value => {
-              Object.entries(value).map(val => {
-                errors[val[0]] = val[1];
-                this.setState({ errors });
-              });
+              if (typeof value === "object") {
+                Object.entries(value).map(val => {
+                  errors = {};
+                  errors[val[0]] = val[1];
+                  this.setState({ errors });
+                  if (this.state.errors) {
+                    Object.entries(this.elements).map(el => {
+                      let err = { ...this.state.errors };
+                      if (err[el[0]]) {
+                        el[1].classList.add("input--danger");
+                        el[1].parentNode.insertAdjacentHTML(
+                          "afterend",
+                          `<div class='errors'>${err[el[0]]}</div>`
+                        );
+                      }
+                    });
+                  }
+                });
+              } else {
+                const err = document.getElementById("err");
+                if (err) {
+                  err.remove(err);
+                }
+                this.elements.name.parentNode.insertAdjacentHTML(
+                  "beforebegin",
+                  `<div class="alert-danger mb-sm" id="err">${value}</div>`
+                );
+              }
             });
           }
         })
         .catch(err => {
           this.setState({ isFetching: false });
-          console.log(err.message);
         });
     });
   }

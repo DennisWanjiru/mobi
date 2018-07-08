@@ -7,6 +7,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="../../assets/css/styles.css">
   <title>Signin | M-tracker</title>
+  <script>
+    if (sessionStorage.length > 0) {
+      window.history.back()
+    }
+  </script>
 </head>
 
 <body>
@@ -25,12 +30,14 @@
             </svg>
             <input class="input-field" type="text" name="username" placeholder="Enter your username">
           </div>
+          <p class="errors"></p>
           <div class="input-wrapper">
             <svg class="icon input-icon">
               <use xlink:href="../../assets/icons/sprite.svg#icon-lock"></use>
             </svg>
             <input class="input-field" type="password" name="password" placeholder="Enter your password">
           </div>
+          <p class="errors"></p>
 
           <button class="btn btn--block btn--primary" name="submit" type="submit">Sign in</button>
         </form>

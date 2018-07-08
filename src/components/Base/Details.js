@@ -30,7 +30,7 @@ class Details extends Component {
 
   handleTokenUpdate() {
     setInterval(() => {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       token
         ? this.setState({ token, isAuthenticated: true })
         : this.setState({ token: null, isAuthenticated: false });
@@ -49,7 +49,7 @@ class Details extends Component {
       })
       .then(data => {
         this.setState({ isFetching: false });
-        redirect("back");
+        redirect("/requests/");
       })
       .catch(err => console.log(err));
   }
@@ -76,7 +76,7 @@ class Details extends Component {
                 "Token has expired"
               );
               if (hasExpired) {
-                localStorage.removeItem("token");
+                sessionStorage.removeItem("token");
                 redirect("/auth/signin/");
               } else {
                 const request = data.request;
@@ -102,7 +102,7 @@ class Details extends Component {
 
                             <div class="status--details">
                             <em>${request.status}</em>
-                            <div id="actions"></div>
+                            <div class="actions" id="actions"></div>
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,8 @@ class Details extends Component {
                         <button class="btn btn--danger" id="reject">Reject</button>
                    `;
 
-                      approve.addEventListener("click", () => {
+                      approve.addEventListener("click", e => {
+                        e.preventDefault();
                         approve.setAttribute("disabled", "disabled");
                         reject.setAttribute("disabled", "disabled");
                         approve.innerHTML = "Approving...";
@@ -124,24 +125,28 @@ class Details extends Component {
                             this.state.token
                           )
                           .then(res => res.json())
-                          .then(data => console.log(data));
-                        location.reload();
+                          .then(data => location.reload());
                       });
-                      reject.addEventListener("click", () => {
+
+                      reject.addEventListener("click", e => {
+                        e.preventDefault();
                         reject.setAttribute("disabled", "disabled");
                         approve.setAttribute("disabled", "disabled");
                         reject.innerHTML = "Rejecting...";
                         api
-                          .update(`/requests/${id}/reject/`, state.token)
+                          .update(
+                            `/requests/${this.id}/reject/`,
+                            this.state.token
+                          )
                           .then(res => res.json())
-                          .then(data => console.log(data));
-                        location.reload();
+                          .then(data => location.reload());
                       });
                     } else if (request.status === "approved") {
                       actions.innerHTML = `
                         <button class="btn btn--primary" id="resolve">Resolve</button>
                     `;
-                      resolve.addEventListener("click", () => {
+                      resolve.addEventListener("click", e => {
+                        e.preventDefault();
                         resolve.setAttribute("disabled", "disabled");
                         resolve.innerHTML = "resolving...";
                         api
@@ -150,10 +155,13 @@ class Details extends Component {
                             this.state.token
                           )
                           .then(res => res.json())
-                          .then(data => console.log(data));
-                        location.reload();
+                          .then(data => location.reload());
                       });
                     }
+
+                    back.addEventListener("click", () =>
+                      redirect("/dashboard/")
+                    );
                   } else {
                     content.innerHTML = `
                       <div class="row">
@@ -172,11 +180,8 @@ class Details extends Component {
                         <div class="col-md--2 mt-md fab--wrapper" id="actions"></div>
                       </div>
                     `;
-                    back.addEventListener("click", () => redirect("back"));
-                  }
-
-                  if (request.status === "pending") {
-                    actions.innerHTML = `
+                    if (request.status === "pending") {
+                      actions.innerHTML = `
                         <a href="/requests/edit/?${this.id}" class="link">
                           <div class="fab blue">
                             <svg class="icon icon--fab">
@@ -190,7 +195,12 @@ class Details extends Component {
                           </svg>
                         </div>
                     `;
-                    trash.addEventListener("click", this.handleDelete);
+                      trash.addEventListener("click", this.handleDelete);
+                    }
+
+                    back.addEventListener("click", () =>
+                      redirect("/requests/")
+                    );
                   }
                 } else {
                   content.innerHTML = `<h1>Request not found :(</h1>`;

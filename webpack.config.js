@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: {
     dashboard: "./src/components/Admin/Dashboard.js",
     admin_details: "./src/components/Admin/RequestDetails.js",
@@ -9,6 +9,7 @@ module.exports = {
     edit: "./src/components/Client/Edit.js",
     newRequest: "./src/components/Client/NewRequest.js",
     requests: "./src/components/Client/Requests.js",
+    landing: "./src/components/Guest/Landing.js",
     signin: "./src/components/Guest/Signin.js",
     signup: "./src/components/Guest/Signup.js"
   },

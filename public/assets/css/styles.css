@@ -668,6 +668,10 @@ span {
   padding: 4rem 5rem;
 }
 
+.flex-center {
+  padding: 2rem 3rem;
+}
+
 .card--login {
   width: 30rem;
   padding: 4rem 5rem;
@@ -676,10 +680,46 @@ span {
 
 .link {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .hr {
   border-bottom: solid 1px var(--text-color-light);
+}
+
+/* Messages */
+.alert-success {
+  padding: 1rem 2rem;
+  color: #155724;
+  font-size: 1.4rem;
+  background-color: #d4edda;
+}
+
+.alert-danger {
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  color: #721c24;
+  background-color: #f8d7da;
+}
+
+.input--danger {
+  border: 1px solid #cc0000;
+  color: #cc0000;
+}
+
+.input--success {
+  border: 1px solid green;
+  color: green;
+}
+
+.errors {
+  color: #cc0000;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.danger li {
+  color: #fff;
 }
 
 /* LANDING PAGE */
@@ -816,6 +856,10 @@ span {
   flex-direction: row;
   align-content: center;
   align-items: center;
+}
+
+.admin-actions {
+  display: flex !important;
 }
 
 .actions {
@@ -973,6 +1017,10 @@ span {
   }
 
   .footer__content > p:first-child {
+    display: none;
+  }
+
+  #nav {
     display: none;
   }
 

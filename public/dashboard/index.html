@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/dashboard/main.css">
   <script>
-    token = localStorage.getItem("token");
+    token = sessionStorage.getItem("token");
     if (!token) {
       window.location.replace("http://127.0.0.1:8080/auth/signin/");
     }
@@ -44,7 +44,7 @@
             </svg>
           </li>
           <li class="sidebar__link-item">
-            <a href="#" class="link link--sidebar">Sign out</a>
+            <a id="signout" class="link link--sidebar">Sign out</a>
             <svg class="icon icon--sidebar">
               <use xlink:href="../assets/icons/sprite.svg#icon-log-out"></use>
             </svg>
@@ -64,7 +64,7 @@
             <use xlink:href="../assets/icons/sprite.svg#icon-list"></use>
           </svg>
           <form action="#" class="search">
-            <input type="text" name="search" class="search__input" placeholder="Search requests">
+            <input type="text" id="search" class="search__input" placeholder="Search requests">
             <button class="search__button">
               <svg class="icon search__icon">
                 <use xlink:href="../assets/icons/sprite.svg#icon-search"></use>

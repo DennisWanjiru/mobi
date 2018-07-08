@@ -38,7 +38,7 @@ class Edit extends Component {
 
   handleTokenUpdate() {
     setInterval(() => {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       token
         ? this.setState({ token, isAuthenticated: true })
         : this.setState({ token: null, isAuthenticated: false });
@@ -46,7 +46,9 @@ class Edit extends Component {
   }
 
   fetchRequest() {
-    back.addEventListener("click", () => redirect("back"));
+    back.addEventListener("click", () =>
+      redirect(`/requests/view/?${this.id}`)
+    );
     setTimeout(() => {
       this.setState({ isFetching: true });
       const el = this.elemements;
@@ -79,7 +81,7 @@ class Edit extends Component {
                 "Token has expired"
               );
               if (hasExpired) {
-                localStorage.removeItem("token");
+                sessionStorage.removeItem("token");
                 redirect("/auth/signin/");
               }
             }

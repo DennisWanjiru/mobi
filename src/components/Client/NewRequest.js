@@ -37,7 +37,7 @@ class NewRequest extends Component {
 
   handleTokenUpdate() {
     setInterval(() => {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       token
         ? this.setState({ token, isAuthenticated: true })
         : this.setState({ token: null, isAuthenticated: false });
@@ -66,7 +66,6 @@ class NewRequest extends Component {
           this.handleChange();
           e.preventDefault();
           this.setState({ isFetching: true });
-          console.log(this.state);
           api
             .post(`/users/requests/`, this.state.data, this.state.token)
             .then(res => {
@@ -84,7 +83,6 @@ class NewRequest extends Component {
                   errors[value[0]] = value[1];
                   this.setState({ errors });
                 });
-                console.log(this.state.errors);
               }
             })
             .catch(err => {
