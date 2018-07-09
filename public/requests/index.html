@@ -10,7 +10,7 @@
   <script>
     token = sessionStorage.getItem("token");
     if (!token) {
-      window.location.replace("http://127.0.0.1:8080/auth/signin/");
+      window.location.replace("https://mtracker-client.herokuapp.com/auth/signin/");
     }
   </script>
   <title>All Requests | M-tracker</title>
@@ -19,35 +19,6 @@
 <body>
   <aside class="mobile-nav hidden" id="mobile-nav">
     <div id="mobile"></div>
-    <!-- <div class="brand brand--mobile hr">
-      <span>M-tracker</span>
-    </div>
-    <ul sidebar__nav>
-      <li class="sidebar__link-item mobile-item">`
-        <a href="" class="link link--sidebar mobile-link">Home</a>
-        <svg class="icon icon--sidebar mobile-icon">
-          <use xlink:href="../assets/icons/sprite.svg#icon-home-lite"></use>
-        </svg>
-      </li>
-      <li class="sidebar__link-item mobile-item">
-        <a href="/requests/" class="link link--sidebar mobile-link">Requests</a>
-        <svg class="icon icon--sidebar mobile-icon">
-          <use xlink:href="../assets/icons/sprite.svg#icon-layers"></use>
-        </svg>
-      </li>
-      <li class="sidebar__link-item mobile-item">
-        <a href="new" class="link link--sidebar mobile-link">Make request</a>
-        <svg class="icon icon--sidebar mobile-icon">
-          <use xlink:href="../assets/icons/sprite.svg#icon-activity"></use>
-        </svg>
-      </li>
-      <li class="sidebar__link-item mobile-item">
-        <a href="#" class="link link--sidebar mobile-link">Sign outt</a>
-        <svg class="icon icon--sidebar mobile-icon">
-          <use xlink:href="../assets/icons/sprite.svg#icon-log-out"></use>
-        </svg>
-      </li>
-    </ul> -->
   </aside>
   <header>
     <nav class="nav nav--primary">
