@@ -120,4 +120,4 @@ class Signin extends Component {
   }
 }
 
-const signin = new Signin();
+new Signin();

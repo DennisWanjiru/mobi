@@ -5,7 +5,7 @@ class Base {
   constructor() {
     if (sessionStorage.length === 0 && location.pathname === "/index.html") {
       this.handleMobileView();
-    } else if (sessionStorage.length > 0) {
+    } else if (sessionStorage.token) {
       this.render();
       this.handleSignout();
       this.toggleSignout();

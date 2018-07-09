@@ -6,9 +6,9 @@
   "author": "Dennis Wanjiru",
   "license": "MIT",
   "scripts": {
+    "start": "node server.js",
     "serve": "webpack --watch & live-server public/",
     "heroku-postbuild": "webpack -p",
-    "start": "node server.js",
     "watch": "webpack --watch",
     "build": "webpack --config webpack.config.js"
   },
