@@ -1,3 +1,3 @@
-const baseRoute = "http://127.0.0.1:8080";
+const baseRoute = "https://mtracker-client.herokuapp.com/";
 
 export const redirect = path => window.location.replace(`${baseRoute}${path}`);
