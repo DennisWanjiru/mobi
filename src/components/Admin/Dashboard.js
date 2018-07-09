@@ -27,7 +27,6 @@ class Dashboard extends Component {
     this.elems = dashboardNodes();
     this.handleTokenUpdate();
     this.fetchRequests();
-    this.handleSearch();
   }
 
   handleTokenUpdate() {
