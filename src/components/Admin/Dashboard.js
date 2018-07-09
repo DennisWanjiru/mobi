@@ -22,8 +22,7 @@ class Dashboard extends Component {
       status: 0,
       token: null
     };
-    this.handleDataUpdate = this.handleDataUpdate.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
+
     new Filters({ update: this.handleDataUpdate });
     this.elems = dashboardNodes();
     this.handleTokenUpdate();
