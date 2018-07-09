@@ -125,7 +125,7 @@ class Requests extends Component {
                 root.innerHTML = `
                   <h1>
                     ${data.message}. Make a new request
-                    <a href="http://127.0.0.1:8080/requests/new/">here</a>
+                    <a href="https://mtracker-client.herokuapp.com/requests/new/">here</a>
                   </h1>`;
               } else {
                 const hasExpired = Object.values(data).includes(
