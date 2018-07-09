@@ -1,5 +1,5 @@
 {
-  "name": "mtracker",
+  "name": "mtracker-client",
   "version": "1.0.0",
   "main": "server.js",
   "repository": "git@github.com:DennisWanjiru/mtracker.git",
