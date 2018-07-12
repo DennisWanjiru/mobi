@@ -34,8 +34,9 @@ class Base {
     const decoded = jwtDecode(sessionStorage.token);
     const user = decoded.identity;
 
-    if (!user.is_admin) {
+    if (!user.is_admin || !sessionStorage.token) {
       const hamburger = document.getElementById("hamburger");
+      console.log(hamburger);
       const mobileNav = document.getElementById("mobile-nav").classList;
       const body = document.querySelector("body").classList;
 

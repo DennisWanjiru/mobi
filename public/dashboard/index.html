@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="../assets/css/styles.css">
-  <link rel="stylesheet" href="../assets/css/dashboard/main.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/dashboard/main.css">
   <script>
     token = sessionStorage.getItem("token");
     if (!token) {
-      window.location.replace("http://127.0.0.1:8080/auth/signin/");
+      window.location.replace("https://mtracker-client.herokuapp.com/auth/signin/");
     }
   </script>
   <title>Dashoard | M-tracker</title>
@@ -28,13 +28,13 @@
           <li class="sidebar__link-item active">
             <a href="/dashboard/" class="link link--sidebar">Home</a>
             <svg class="icon icon--sidebar">
-              <use xlink:href="../assets/icons/sprite.svg#icon-home-lite"></use>
+              <use xlink:href="/assets/icons/sprite.svg#icon-home-lite"></use>
             </svg>
           </li>
           <li class="sidebar__link-item">
             <a id="signout" class="link link--sidebar">Sign out</a>
             <svg class="icon icon--sidebar">
-              <use xlink:href="../assets/icons/sprite.svg#icon-log-out"></use>
+              <use xlink:href="/assets/icons/sprite.svg#icon-log-out"></use>
             </svg>
           </li>
         </ul>
@@ -49,13 +49,13 @@
       <header>
         <nav class="nav nav--dashboard">
           <svg class="icon">
-            <use xlink:href="../assets/icons/sprite.svg#icon-list"></use>
+            <use xlink:href="/assets/icons/sprite.svg#icon-list"></use>
           </svg>
           <form action="#" class="search">
             <input type="text" id="search" class="search__input" placeholder="Search requests">
             <button class="search__button">
               <svg class="icon search__icon">
-                <use xlink:href="../assets/icons/sprite.svg#icon-search"></use>
+                <use xlink:href="/assets/icons/sprite.svg#icon-search"></use>
               </svg>
             </button>
           </form>
@@ -63,17 +63,17 @@
           <ul class="nav--right">
             <li class="nav__item nav__item--dashboard">
               <svg class="icon">
-                <use xlink:href="../assets/icons/sprite.svg#icon-bell"></use>
+                <use xlink:href="/assets/icons/sprite.svg#icon-bell"></use>
               </svg>
               <div class="notification">45</div>
             </li>
             <li class="nav__item nav__item--dashboard">
               <svg class="icon">
-                <use xlink:href="../assets/icons/sprite.svg#icon-mail"></use>
+                <use xlink:href="/assets/icons/sprite.svg#icon-mail"></use>
               </svg>
               <div class="notification">8</div>
             </li>
-            <span class="username">Dennis Wanjiru</span>
+            <span class="username" id="username"></span>
           </ul>
         </nav>
       </header>
@@ -83,7 +83,7 @@
             <h3 class="card--status__title">All requests</h3>
             <span class="card--status__stats">
               <svg class="icon icon--status">
-                <use xlink:href="../assets/icons/sprite.svg#icon-grid"></use>
+                <use xlink:href="/assets/icons/sprite.svg#icon-grid"></use>
               </svg>
               <p class="stats" id="all"></p>
             </span>
@@ -92,7 +92,7 @@
             <h3 class="card--status__title">Pending</h3>
             <span class="card--status__stats">
               <svg class="icon icon--status">
-                <use xlink:href="../assets/icons/sprite.svg#icon-layers"></use>
+                <use xlink:href="/assets/icons/sprite.svg#icon-layers"></use>
               </svg>
               <p class="stats" id="pending"></p>
             </span>
@@ -101,7 +101,7 @@
             <h3 class="card--status__title">Approved</h3>
             <span class="card--status__stats">
               <svg class="icon icon--status">
-                <use xlink:href="../assets/icons/sprite.svg#icon-git-merge"></use>
+                <use xlink:href="/assets/icons/sprite.svg#icon-git-merge"></use>
               </svg>
               <p class="stats" id="approved"></p>
             </span>
@@ -110,7 +110,7 @@
             <h3 class="card--status__title">Resolved</h3>
             <span class="card--status__stats">
               <svg class="icon icon--status">
-                <use xlink:href="../assets/icons/sprite.svg#icon-check-square"></use>
+                <use xlink:href="/assets/icons/sprite.svg#icon-check-square"></use>
               </svg>
               <p class="stats" id="resolved"></p>
             </span>
@@ -119,7 +119,7 @@
             <h3 class="card--status__title">Rejected</h3>
             <span class="card--status__stats">
               <svg class="icon icon--status">
-                <use xlink:href="../assets/icons/sprite.svg#icon-info"></use>
+                <use xlink:href="/assets/icons/sprite.svg#icon-info"></use>
               </svg>
               <p class="stats" id="rejected"></p>
             </span>
@@ -130,7 +130,7 @@
       </main>
     </div>
   </div>
-  <script src="../dist/dashboard.bundle.js"></script>
+  <script src="/dist/dashboard.bundle.js"></script>
 </body>
 
 </html>

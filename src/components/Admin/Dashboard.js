@@ -3,6 +3,7 @@ import { dashboardNodes } from "../utils/nodes";
 import api from "../utils/api";
 import { redirect } from "../utils/routes";
 import Filters from "../Base/Filters";
+import jwtDecode from "jwt-decode";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -23,13 +24,46 @@ class Dashboard extends Component {
       token: null
     };
 
-    new Filters({ update: this.handleDataUpdate });
+    new Filters({ update: this.handleDataUpdate.bind(this) });
     this.elems = dashboardNodes();
     this.handleTokenUpdate();
     this.fetchRequests();
+    this.handleSearch();
+  }
+
+  handleSearch() {
+    const requests = new Promise((resolve, reject) => {
+      setInterval(() => {
+        if (this.state.data.requests) {
+          resolve(this.state.data);
+        }
+      }, 0);
+    });
+
+    requests.then(res => {
+      const prevData = { ...res };
+      let data;
+      search.addEventListener("keyup", e => {
+        const term = e.target.value.toLowerCase();
+        const requests = prevData.requests.filter(
+          ({ title, description, request_type, status }) =>
+            title.toLowerCase().indexOf(term) !== -1 ||
+            description.toLowerCase().indexOf(term) !== -1 ||
+            request_type.toLowerCase().indexOf(term) !== -1 ||
+            status.toLowerCase().indexOf(term) !== -1
+        );
+
+        data = { requests };
+        this.setState({ data });
+        this.render();
+      });
+    });
   }
 
   handleTokenUpdate() {
+    const decoded = jwtDecode(sessionStorage.token);
+    const user = decoded.identity;
+    username.innerHTML = user.name;
     setInterval(() => {
       const token = sessionStorage.getItem("token");
       token
